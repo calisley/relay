@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.images {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+.images img{
+  height: 100vh;
+  width: 100vw;
+  object-fit:cover;
+}
+.container-fluid{
+  padding: 0 !important;
+}
