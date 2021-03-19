@@ -11,6 +11,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Container from "react-bootstrap/Container";
 import Glowsticks from "./Glowsticks.js";
 import { onCreateGlowsick } from "./graphql/subscriptions";
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 
 const initialFormState = {dedication:'', note:''}
 
