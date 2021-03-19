@@ -1,15 +1,18 @@
-type Image @model {
+type Image @model @auth(rules: [{allow: public}]) {
   id: ID!
   image: String!
   comments: [Glowsick] @connection(name: "ImageGlowsticks")
 }
-type Glowsick @model (subscriptions:null){
+
+type Glowsick @model(subscriptions: null) @auth(rules: [{allow: public}]) {
   id: ID!
   dedication: String!
   note: String
   image: Image @connection(name: "ImageGlowsticks")
-  glowsickImageId: String 
+  glowsickImageId: String
 }
+
 type Subscription {
   onCreateGlowsick(glowsickImageId: String): Glowsick @aws_subscribe(mutations: ["createGlowsick"])
-} 
+}
+ 
