@@ -107,6 +107,13 @@ function Glowsticks({ imageId, glowsticks, name }) {
         <div className="glowsticks-container">
           {glowsticks ? (
             <>
+             <div className='glowstick-entry-hider'
+             onClick={() => setEntryToggle(false)}
+
+            >
+              <BsX/>
+
+            </div>
             {glowsticks.length > 0 ? 
             <div className="comments-container">
               <div className="comments-viewport">
@@ -143,13 +150,7 @@ function Glowsticks({ imageId, glowsticks, name }) {
             </Spinner>
           )}
           <Container className="glowstick-input-wrapper">
-            <div className='glowstick-entry-hider'
-             onClick={() => setEntryToggle(false)}
-
-            >
-              <BsX/>
-
-            </div>
+       
             <Form.Group>
               <Form.Row>
                 <Col>
@@ -351,8 +352,8 @@ function Glowsticks({ imageId, glowsticks, name }) {
             </label>
           </Col>
         </Row>
-        </Form> */}
-        <div className='create-glowstick-button'>
+        </Form> */}    
+            <div className='create-glowstick-button'>
             <Button
               id={formData.dedication ? "createBtn" : "createBtnNoHover"}
               onClick={createGlowstick}
@@ -362,6 +363,7 @@ function Glowsticks({ imageId, glowsticks, name }) {
               <BsArrowUp/>
             </Button>
             </div>   
+      
           </Container>
         </div>
       )}

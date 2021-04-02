@@ -17,6 +17,11 @@ import {BsChevronLeft, BsChevronRight} from 'react-icons/bs';
 const initialFormState = { dedication: "", note: "" };
 
 function App() {
+
+
+  useEffect(() => {
+    document.title = "Relay for Life";   }, []);
+    
   const [ids, setIds] = useState([]);
   const [images, setImages] = useState([]);
   const [names, setNames] = useState([]);

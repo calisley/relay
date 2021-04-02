@@ -232,8 +232,8 @@ input[type='radio']:checked + .radio__control::before {
   height: 1.5em;
 }
 #createBtn svg{
-  width: 3em;
-  height: 3em;
+  width: 2em;
+  height: 2em;
 }
 
 .hidden{
@@ -261,13 +261,15 @@ input[type='radio']:checked + .radio__control::before {
   align-items: center;
 }
 .glowstick-entry-hider{
-  width: 2em;
-  height: 4em;
+
+  position: absolute;
+  top: .5em;
+  right: .5em;
   display: flex;
   align-content: center;
   justify-content: center;
-  border-right: 1px solid lightgray;
   cursor: pointer;
+  z-index: 1000;
 }
 .glowstick-entry-hider svg{
   width: 1.5em;
