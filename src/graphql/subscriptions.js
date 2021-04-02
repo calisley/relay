@@ -7,18 +7,19 @@ export const onCreateGlowsick = /* GraphQL */ `
       id
       dedication
       note
-      image {
-        id
-        image
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       glowsickImageId
       createdAt
       updatedAt
+      image {
+        id
+        image
+        name
+        createdAt
+        updatedAt
+        comments {
+          nextToken
+        }
+      }
     }
   }
 `;
@@ -27,6 +28,9 @@ export const onCreateImage = /* GraphQL */ `
     onCreateImage {
       id
       image
+      name
+      createdAt
+      updatedAt
       comments {
         items {
           id
@@ -38,8 +42,6 @@ export const onCreateImage = /* GraphQL */ `
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -48,6 +50,9 @@ export const onUpdateImage = /* GraphQL */ `
     onUpdateImage {
       id
       image
+      name
+      createdAt
+      updatedAt
       comments {
         items {
           id
@@ -59,8 +64,6 @@ export const onUpdateImage = /* GraphQL */ `
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -69,6 +72,9 @@ export const onDeleteImage = /* GraphQL */ `
     onDeleteImage {
       id
       image
+      name
+      createdAt
+      updatedAt
       comments {
         items {
           id
@@ -80,8 +86,6 @@ export const onDeleteImage = /* GraphQL */ `
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;

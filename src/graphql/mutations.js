@@ -9,6 +9,9 @@ export const createImage = /* GraphQL */ `
     createImage(input: $input, condition: $condition) {
       id
       image
+      name
+      createdAt
+      updatedAt
       comments {
         items {
           id
@@ -20,8 +23,6 @@ export const createImage = /* GraphQL */ `
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -33,6 +34,9 @@ export const updateImage = /* GraphQL */ `
     updateImage(input: $input, condition: $condition) {
       id
       image
+      name
+      createdAt
+      updatedAt
       comments {
         items {
           id
@@ -44,8 +48,6 @@ export const updateImage = /* GraphQL */ `
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -57,6 +59,9 @@ export const deleteImage = /* GraphQL */ `
     deleteImage(input: $input, condition: $condition) {
       id
       image
+      name
+      createdAt
+      updatedAt
       comments {
         items {
           id
@@ -68,8 +73,6 @@ export const deleteImage = /* GraphQL */ `
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -82,18 +85,19 @@ export const createGlowsick = /* GraphQL */ `
       id
       dedication
       note
-      image {
-        id
-        image
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       glowsickImageId
       createdAt
       updatedAt
+      image {
+        id
+        image
+        name
+        createdAt
+        updatedAt
+        comments {
+          nextToken
+        }
+      }
     }
   }
 `;
@@ -106,18 +110,19 @@ export const updateGlowsick = /* GraphQL */ `
       id
       dedication
       note
-      image {
-        id
-        image
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       glowsickImageId
       createdAt
       updatedAt
+      image {
+        id
+        image
+        name
+        createdAt
+        updatedAt
+        comments {
+          nextToken
+        }
+      }
     }
   }
 `;
@@ -130,18 +135,19 @@ export const deleteGlowsick = /* GraphQL */ `
       id
       dedication
       note
-      image {
-        id
-        image
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       glowsickImageId
       createdAt
       updatedAt
+      image {
+        id
+        image
+        name
+        createdAt
+        updatedAt
+        comments {
+          nextToken
+        }
+      }
     }
   }
 `;

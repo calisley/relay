@@ -1,11 +1,35 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const listImages = /* GraphQL */ `
+  query ListImages(
+    $filter: ModelImageFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listImages(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        image
+        name
+        createdAt
+        updatedAt
+        comments {
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
 export const getImage = /* GraphQL */ `
   query GetImage($id: ID!) {
     getImage(id: $id) {
       id
       image
+      name
+      createdAt
+      updatedAt
       comments {
         items {
           id
@@ -17,28 +41,6 @@ export const getImage = /* GraphQL */ `
         }
         nextToken
       }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listImages = /* GraphQL */ `
-  query ListImages(
-    $filter: ModelImageFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listImages(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        image
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      nextToken
     }
   }
 `;
@@ -48,18 +50,19 @@ export const getGlowsick = /* GraphQL */ `
       id
       dedication
       note
-      image {
-        id
-        image
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       glowsickImageId
       createdAt
       updatedAt
+      image {
+        id
+        image
+        name
+        createdAt
+        updatedAt
+        comments {
+          nextToken
+        }
+      }
     }
   }
 `;
@@ -74,15 +77,16 @@ export const listGlowsicks = /* GraphQL */ `
         id
         dedication
         note
-        image {
-          id
-          image
-          createdAt
-          updatedAt
-        }
         glowsickImageId
         createdAt
         updatedAt
+        image {
+          id
+          image
+          name
+          createdAt
+          updatedAt
+        }
       }
       nextToken
     }

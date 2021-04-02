@@ -1,6 +1,7 @@
 type Image @model @auth(rules: [{allow: public}]) {
   id: ID!
   image: String!
+  name: String!
   comments: [Glowsick] @connection(name: "ImageGlowsticks")
 }
 
