@@ -5,7 +5,7 @@
 .glowsticks {
   position: absolute;
   z-index: 1000;
-  bottom: 2em;
+  bottom: 1em;
   right: 2em;
 }
 @font-face {
@@ -22,7 +22,7 @@
   background-color: white;
   border: 1px solid white;
   border-radius: 10px;
-
+  width: 400px;
 
 }
 .glowstick-input-wrapper{
@@ -58,7 +58,7 @@
 }
 .comments-viewport::after {
   content: "";
-  min-height: 1em;
+  min-height: 24px;
 }
 
 .comments-viewport::-webkit-scrollbar {
@@ -77,6 +77,7 @@
 .comment svg{
   width: 1.5em;
   height: 1.5em;
+  color: var(--color);
 }
 .comment p {
   margin: 0;
@@ -180,7 +181,12 @@ input[type='radio']:checked + .radio__control::before {
 .input-with-effect {
   position: relative;
   display: inline;
+  width: 100%;
 }
+.nav .input-with-effect input{
+  width: 100%;
+}
+
 :focus {
   outline: none;
 }
@@ -208,7 +214,7 @@ input[type='radio']:checked + .radio__control::before {
   margin-bottom: 1em;
   color: white;
 }
-.minimized-glowsticks{
+.minimized-util{
   width:4em;
   height: 4em;
   background-color: var(--color);
@@ -221,13 +227,13 @@ input[type='radio']:checked + .radio__control::before {
   
 }
 
-.minimized-glowsticks:hover{
+.minimized-util:hover{
   cursor: pointer;
   background-color:white;
   color: var(--color);
 }
 
-.minimized-glowsticks svg{
+.minimized-util svg{
   width: 1.5em;
   height: 1.5em;
 }
@@ -260,19 +266,50 @@ input[type='radio']:checked + .radio__control::before {
   justify-content: center;
   align-items: center;
 }
-.glowstick-entry-hider{
+.util-hider{
 
   position: absolute;
-  top: .5em;
-  right: .5em;
+  top: .25em;
+  right: .25em;
   display: flex;
   align-content: center;
   justify-content: center;
   cursor: pointer;
   z-index: 1000;
 }
-.glowstick-entry-hider svg{
+.util-hider svg{
   width: 1.5em;
   height: 1.5em;
   align-self: center;
+}
+
+/* search/navigation feature  */
+.nav{
+  position: absolute;
+  z-index: 1000;
+  bottom: 1em;
+  left: 2em;
+}
+
+
+
+.searchIcon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0em 1em;
+}
+
+.nav .comment{
+  transition: 0.4s ease-out;
+
+}
+.nav .comment:hover{
+  cursor: pointer;
+  transform: translateX(4px);
+
+}
+
+.nav .comments-viewport{
+
 }

@@ -16,19 +16,8 @@ import {BsArrowUp, BsX} from "react-icons/bs";
 
 import useWindowDimensions from "./useWindowDimensions";
 
-const options = [
-  "Personal",
-  "a parent",
-  "a sibling",
-  "a spouse",
-  "a child",
-  "a grandparent",
-  "a friend",
-  "other",
-];
 
-
-function Glowsticks({ imageId, glowsticks, name }) {
+function Utilities({ imageId, glowsticks, name }) {
   // state management
 
   const initialFormState = { dedication: name, note: "" };
@@ -47,6 +36,7 @@ function Glowsticks({ imageId, glowsticks, name }) {
   }, [width]);
 
   const [entryToggle, setEntryToggle] = useState(width > 1000);
+  const [navToggle, setNavToggle] = useState(width > 1000);
 
   
 
@@ -95,10 +85,17 @@ function Glowsticks({ imageId, glowsticks, name }) {
   }
 
   return (
-    <>
+    <div className="utilities">
+    <div className="nav">
+    {!navToggle ? 
+      <div className='nav'>
+
+      </div>
+  : ""}
+  </div>
+  <div className="glowsticks">
       {!entryToggle ? (
-        <div
-          className="minimized-glowsticks"
+        <div className="minimized-glowsticks"
           onClick={() => setEntryToggle(true)}
         >
           <IoMdColorWand />
@@ -112,7 +109,6 @@ function Glowsticks({ imageId, glowsticks, name }) {
 
             >
               <BsX/>
-
             </div>
             {glowsticks.length > 0 ? 
             <div className="comments-container">
@@ -192,167 +188,6 @@ function Glowsticks({ imageId, glowsticks, name }) {
                 </Col>
               </Form.Row>
             </Form.Group>
-
-            {/* <Form className="glowstick-input-form">
-        <Row>
-          <Col>
-            <label className="radio">
-              <span className="radio__input">
-                <input
-                  type="radio"
-                  name="dedication"
-                  label="Personal"
-                  value="Personal"
-                  id="Personal"
-                  checked={formData.dedication === "Personal"}
-                  onChange={(e) => setFormData({ ...formData, dedication: "Personal" })}
-                />
-                <span className="radio__control"></span>
-              </span>
-              <span className="radio__label">Personal</span>
-            </label>
-          </Col>
-          <Col>
-            <label className="radio">
-              <span className="radio__input">
-                <input
-                  type="radio"
-                  name="dedication"
-                  label="Parent"
-                  value="a parent"
-                  id="parent"
-                  checked={formData.dedication === "a parent"}
-                  onChange={(e) => setFormData({ ...formData, dedication: "a parent" })}
-                />
-                <span className="radio__control"></span>
-              </span>
-              <span className="radio__label">Parent</span>
-            </label>
-          </Col>
-          <Col>
-            <label className="radio">
-              <span className="radio__input">
-                <input
-                  type="radio"
-                  name="dedication"
-                  label="Sibling"
-                  value="a sibling"
-                  id="sibling"
-                  checked={formData.dedication === "a sibling"}
-                  onChange={(e) => setFormData({ ...formData, dedication: "a sibling" })}
-                />
-                <span className="radio__control"></span>
-              </span>
-              <span className="radio__label">Sibling</span>
-            </label>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <label className="radio">
-              <span className="radio__input">
-                <input
-                  type="radio"
-                  name="dedication"
-                  label="Spouse"
-                  value="a spouse"
-                  id="spouse"
-                  checked={formData.dedication === "a spouse"}
-                  onChange={(e) => setFormData({ ...formData, dedication: "a spouse" })}
-                />
-                <span className="radio__control"></span>
-              </span>
-              <span className="radio__label">Spouse</span>
-            </label>
-          </Col>
-          <Col>
-            <label className="radio">
-              <span className="radio__input">
-                <input
-                  type="radio"
-                  name="dedication"
-                  label="Child"
-                  value="a child"
-                  id="child"
-                  checked={formData.dedication === "a child"}
-                  onChange={(e) => setFormData({ ...formData, dedication: "a child" })}
-                />
-                <span className="radio__control"></span>
-              </span>
-              <span className="radio__label">Child</span>
-            </label>
-          </Col>
-          <Col>
-            <label className="radio">
-              <span className="radio__input">
-                <input
-                  type="radio"
-                  name="dedication"
-                  label="Grandparent"
-                  value="a grandparent"
-                  id="grandparent"
-                  checked={formData.dedication === "a grandparent"}
-                  onChange={(e) => setFormData({ ...formData, dedication: "a grandparent" })}
-                />
-                <span className="radio__control"></span>
-              </span>
-              <span className="radio__label">Grandparent</span>
-            </label>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <label className="radio">
-              <span className="radio__input">
-                <input
-                  type="radio"
-                  name="dedication"
-                  value="a friend"
-                  id="friend"
-                  checked={formData.dedication === "a friend"}
-                  onChange={(e) => setFormData({ ...formData, dedication: "a friend" })}
-                />
-                <span className="radio__control"></span>
-              </span>
-              <span className="radio__label">Friend</span>
-            </label>
-          </Col>
-          <Col>
-            <label className="radio">
-              <span className="radio__input" id="other_input">
-                <input
-                  type="radio"
-                  aria-label="Other"
-                  name="dedication"
-                  value="Other"
-                  className="custom-radio"
-                  id="other"
-                  checked={formData.dedication === "Other"}
-                  onChange={(e) => {
-                    setFormData({ ...formData, dedication: "Other" });
-                    onRadioSelect();
-                  }}
-                />
-                <span className="radio__control"></span>
-              </span>
-              <span className="radio__label">
-                <input
-                  type="text"
-                  value={customDedication}
-                  placeholder="Other"
-                  onChange={(e) => setCustom(e.target.value)}
-                  className="effect-1"
-                  id="other"
-                  ref={input}
-                  onFocus={() => setFormData({ ...formData, dedication: "Other" })
-                }
-                />
-                <span className="focus-border" />
-              </span>
-            </label>
-          </Col>
-        </Row>
-        </Form> */}    
             <div className='create-glowstick-button'>
             <Button
               id={formData.dedication ? "createBtn" : "createBtnNoHover"}
@@ -367,8 +202,9 @@ function Glowsticks({ imageId, glowsticks, name }) {
           </Container>
         </div>
       )}
-    </>
+      </div>
+      </div>
   );
 }
 
-export default Glowsticks;
+export default Utilities;

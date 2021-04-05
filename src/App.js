@@ -12,6 +12,7 @@ import Spinner from 'react-bootstrap/Spinner'
 import "./glowsticks.css";
 import logo from './relay-logo.png';
 import {BsChevronLeft, BsChevronRight} from 'react-icons/bs';
+import Utilities from "./Util.js";
 
 
 const initialFormState = { dedication: "", note: "" };
@@ -21,7 +22,7 @@ function App() {
 
   useEffect(() => {
     document.title = "Relay for Life";   }, []);
-    
+
   const [ids, setIds] = useState([]);
   const [images, setImages] = useState([]);
   const [names, setNames] = useState([]);
@@ -41,7 +42,7 @@ function App() {
     if (ids[activeIndex]) {
       fetchComments(ids[activeIndex]);
     }
-  }, [activeIndex, ids]);
+  }, [activeIndex]);
 
   const handleSelect = (selectedIndex, e) => {
     setActiveIndex(selectedIndex);
@@ -143,9 +144,9 @@ function App() {
     <div className="App">
       {ids[activeIndex] ? 
       <Container fluid>
-        {/* <input type="file" onChange={onImageChange} />
+        <input type="file" onChange={onImageChange} />
         <input type="text" value={nameForImage} onChange={(e)=>{setName(e.target.value)}}/>
-        <button onClick={createImage}>Create image</button> */}
+        <button onClick={createImage}>Create image</button>
         <Carousel
           activeIndex={activeIndex}
           onSelect={handleSelect}
@@ -207,19 +208,20 @@ function App() {
           )} }
         </Carousel>
           */}
-        <div className="glowsticks">
           {ids[activeIndex] ? (
             <>
-              <Glowsticks
+              <Utilities
                 imageId={ids[activeIndex]}
                 name={names[activeIndex]}
                 glowsticks={currentGlowSticks}
+                names={names}
+                setActiveIndex={setActiveIndex}
               />
             </>
           ) : (
             ""
           )}
-        </div>
+        
       </Container>
       :
       <div className='loading-background'>
