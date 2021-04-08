@@ -43,8 +43,13 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
   useEffect(() => {
     if (width < 1000) {
       setEntryToggle(false);
+      setNavToggle(false);
     }
+  
+    
   }, [width]);
+
+ 
 
   const [entryToggle, setEntryToggle] = useState(width > 1000);
   const [navToggle, setNavToggle] = useState(width > 1000);
@@ -65,7 +70,23 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
       setTimeoutCheck(false);
       setTimeout(setTimeoutCheck(true), 2000);
     }
+    if(width < 800){
+
+      if(entryToggle){
+        setNavToggle(false);
+      }
+    }
   }, [entryToggle]);
+
+  useEffect(()=>{
+    if(width < 800){
+
+      if(navToggle){
+        setEntryToggle(false);
+      }
+    }
+   
+  },[navToggle])
 
   // use effects
 
@@ -117,7 +138,7 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
                 >
                   <BsX />
                 </div>
-                {renderedNames.length > 0 && searching?  (
+                {renderedNames.length > 0 && (searching || width < 600)?  (
                   <div className="comments-container">
                     <div className="comments-viewport">
                       {renderedNames.map((name, index) => (
@@ -125,7 +146,13 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
                           className="comment"
                           key={index}
                           onMouseDown={(e)=> e.preventDefault()}
-                          onClick={() => setActiveIndex(names.indexOf(name))}
+                          onClick={() => {
+                            setActiveIndex(names.indexOf(name));
+                            if(width < 600){
+                              setNavToggle(false);
+                            }
+
+                          }}
                         >
                           <div className="glowstickIcon">
                             <GiCandleLight />
@@ -181,7 +208,7 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
       </div>
       <div className="glowsticks">
         {!entryToggle ? (
-          <div className="minimized-util" onClick={() => setEntryToggle(true)}>
+          <div className={width < 600 && navToggle? "hidden" : "minimized-util"} onClick={() => setEntryToggle(true)}>
             <IoMdColorWand />
           </div>
         ) : (
@@ -244,6 +271,7 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
                     <div className="input-with-effect">
                       <input
                         id="dedication"
+                        disabled
                         onChange={(e) =>
                           setFormData({
                             ...formData,

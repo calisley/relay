@@ -4,7 +4,7 @@
 
 .glowsticks {
   position: absolute;
-  z-index: 1000;
+  z-index: 10;
   bottom: 1em;
   right: 2em;
 }
@@ -22,7 +22,8 @@
   background-color: white;
   border: 1px solid white;
   border-radius: 10px;
-  width: 400px;
+  min-width: 410px;
+  width: 410px;
 
 }
 .glowstick-input-wrapper{
@@ -65,14 +66,16 @@
   display: none;
 }
 .comment {
-  height: 48px;
-  min-height: 48px;
+
   display: flex;
   padding-bottom: .5em;
+  max-width: 100%;
+  text-align: left;
 }
 .comment .row{
   margin: 0;
   padding-left: 15px;
+  max-width: 100%;
 }
 .comment svg{
   width: 1.5em;
@@ -99,6 +102,7 @@
   display: block;
   padding: 1em;
   padding-top: .5em;
+  max-width: calc(100vw - 2em);
   
 }
 .effect-1 {
@@ -181,7 +185,10 @@ input[type='radio']:checked + .radio__control::before {
 .input-with-effect {
   position: relative;
   display: inline;
+}
+.nav .input-with-effect {
   width: 100%;
+
 }
 .nav .input-with-effect input{
   width: 100%;
@@ -251,14 +258,14 @@ input[type='radio']:checked + .radio__control::before {
 }
 .create-glowstick-button{
   padding-left: 1em;
+  display: flex;
 }
 
 .glowstickIcon{
   display: flex;
   align-items: center;
   justify-content: center;  
-  width: 2em;
-  height: 100%;
+
 }
 .comment-text-wrapper-solo{
   height: 100%;
@@ -286,7 +293,7 @@ input[type='radio']:checked + .radio__control::before {
 /* search/navigation feature  */
 .nav{
   position: absolute;
-  z-index: 1000;
+  z-index: 10;
   bottom: 1em;
   left: 2em;
 }
@@ -302,6 +309,8 @@ input[type='radio']:checked + .radio__control::before {
 
 .nav .comment{
   transition: 0.4s ease-out;
+  height: 48px;
+  min-height: 48px;
 
 }
 .nav .comment:hover{
@@ -310,6 +319,35 @@ input[type='radio']:checked + .radio__control::before {
 
 }
 
-.nav .comments-viewport{
+/* MOOOOOOBILE */
 
+
+@media only screen and (max-width: 600px) {
+  body{
+    overflow: hidden;
+  }
+  
+  .glowsticks-container{
+    position: fixed;
+    width: 100vw;
+    min-width: unset;
+    height: 100vh;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    border-radius: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .comments-viewport{
+    max-height: calc(100vh - 120px);
+ 
+  }
+  .util-hider svg{
+    width: 3em;
+    height: 3em;
+  }
+ 
+  
 }
