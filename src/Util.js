@@ -209,7 +209,7 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
       </div>
       <div className="glowsticks">
         {!entryToggle ? (
-          <div className={width < 600 && navToggle? "hidden" : "minimized-util"} onClick={() => setEntryToggle(true)}>
+          <div className="minimized-util" onClick={() => setEntryToggle(true)}>
             <IoMdColorWand />
           </div>
         ) : (
