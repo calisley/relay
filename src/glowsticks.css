@@ -341,12 +341,23 @@ input[type='radio']:checked + .radio__control::before {
 
 
 @media only screen and (max-width: 600px) {
+  body{
+    width: 100vw;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    height: 100vh;
+    min-height: -webkit-fill-available;
+    min-height: -moz-available;
+    max-height: -webkit-fill-available;
+    max-height: -moz-available;
+  }
 
   
   .glowsticks-container{
     position: fixed;
     width: 100vw;
-
+    width: -moz-available;
+    width: -webkit-fill-available;
     height: 100vh;
     min-width: unset;
     z-index: 10000;
