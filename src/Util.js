@@ -66,10 +66,7 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
   };
 
   useEffect(() => {
-    if (entryToggle) {
-      setTimeoutCheck(false);
-      setTimeout(setTimeoutCheck(true), 2000);
-    }
+  
     if(width < 800){
 
       if(entryToggle){
@@ -81,7 +78,6 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
 
   useEffect(()=>{
     if(width < 800){
-
       if(navToggle){
         setEntryToggle(false);
       }
@@ -126,7 +122,7 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
     <div className="utilities">
       <div className="nav">
         {!navToggle ? (
-          <div className="minimized-util" onClick={() => setNavToggle(true)}>
+          <div className={width < 600 && entryToggle ? "hidden" : "minimized-util"} onClick={() => setNavToggle(true)}>
             <VscSearch />
           </div>
         ) : (
@@ -209,7 +205,7 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
       </div>
       <div className="glowsticks">
         {!entryToggle ? (
-          <div className="minimized-util" onClick={() => setEntryToggle(true)}>
+          <div className={width < 600 && navToggle? "hidden" : "minimized-util"} onClick={() => setEntryToggle(true)}>
             <IoMdColorWand />
           </div>
         ) : (
