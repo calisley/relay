@@ -1,6 +1,9 @@
 .App {
   text-align: center;
 }
+html, body{
+  height: 100%;
+}
 
 @font-face {
   font-family: Merriweather;
@@ -62,6 +65,7 @@
 .images img{
   height: 100vh;
   width: 100vw;
+  
   object-fit:cover;
 }
 .container-fluid{
@@ -98,3 +102,11 @@
   width: 4em;
   height: 4em;
 } */
+
+
+@media only screen and (max-width: 600px) {
+  .loading-background, .container-fluid{
+    width: -webkit-fill-available;
+    width:-moz-available;  }
+
+}

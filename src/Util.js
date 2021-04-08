@@ -221,6 +221,9 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
                 >
                   <BsX />
                 </div>
+                <div className={width< 600? 'mobile-label' : 'hidden'}>
+                    Glowsticks
+                </div>
                 {glowsticks.length > 0 ? (
                   <div className="comments-container">
                     <div className="comments-viewport">

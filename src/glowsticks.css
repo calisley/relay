@@ -1,5 +1,7 @@
 :root {
   --color: rgb(77, 39, 113);
+
+
 }
 
 .glowsticks {
@@ -319,6 +321,15 @@ input[type='radio']:checked + .radio__control::before {
 
 }
 
+.mobile-label{
+  color: var(--color);
+  position: relative;
+  top: 0;
+  width: 100%;
+  height: 1.5em;
+}
+
+
 /* MOOOOOOBILE */
 
 
@@ -330,8 +341,9 @@ input[type='radio']:checked + .radio__control::before {
   .glowsticks-container{
     position: fixed;
     width: 100vw;
-    min-width: unset;
+
     height: 100vh;
+    min-width: unset;
     z-index: 10000;
     top: 0;
     left: 0;
@@ -339,11 +351,30 @@ input[type='radio']:checked + .radio__control::before {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    min-height: -webkit-fill-available;
+    min-height: -moz-available;
+    max-height: -webkit-fill-available;
+    max-height: -moz-available;
+  
+    
+    /* WebKit-based browsers will ignore this. */
+  /* Mozilla-based browsers will ignore this. */
+
   }
   .comments-viewport{
-    max-height: calc(100vh - 120px);
- 
+    display: flex;
+    
+    overflow-y: auto;
+    max-height: unset;
+    min-height: 0px;
+
   }
+  .comments-container{
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0px;
+  }
+
   .util-hider svg{
     width: 3em;
     height: 3em;
