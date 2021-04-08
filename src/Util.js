@@ -76,6 +76,7 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
         setNavToggle(false);
       }
     }
+    window.scrollTo(0,0);
   }, [entryToggle]);
 
   useEffect(()=>{
@@ -85,7 +86,8 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
         setEntryToggle(false);
       }
     }
-   
+    window.scrollTo(0,0);
+
   },[navToggle])
 
   // use effects
