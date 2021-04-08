@@ -333,6 +333,7 @@ input[type='radio']:checked + .radio__control::before {
   width: 100%;
   min-height: 1.5em;
   font-size: 2em;
+  align-self: flex-start;
 }
 
 
@@ -340,9 +341,7 @@ input[type='radio']:checked + .radio__control::before {
 
 
 @media only screen and (max-width: 600px) {
-  body{
-    overflow: hidden;
-  }
+
   
   .glowsticks-container{
     position: fixed;
