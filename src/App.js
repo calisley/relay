@@ -144,9 +144,9 @@ function App() {
     <div className="App">
       {ids[activeIndex] ? 
       <Container fluid>
-        <input type="file" onChange={onImageChange} />
+        {/* <input type="file" onChange={onImageChange} />
         <input type="text" value={nameForImage} onChange={(e)=>{setName(e.target.value)}}/>
-        <button onClick={createImage}>Create image</button>
+        <button onClick={createImage}>Create image</button> */}
         <Carousel
           activeIndex={activeIndex}
           onSelect={handleSelect}
