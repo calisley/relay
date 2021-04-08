@@ -343,9 +343,6 @@ input[type='radio']:checked + .radio__control::before {
 @media only screen and (max-width: 600px) {
   body{
     overflow: hidden;
-    max-width: -webkit-fill-available;
-    max-width: -moz-available;
-    max-width: 100vw;
   }
 
   
