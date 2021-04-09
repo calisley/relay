@@ -86,9 +86,15 @@ body {
   z-index: -1;
 }
 .images img {
-
   height: 75vh;
   align-self: center;
+}
+.images .spinner-border{
+  align-self: center;
+  width: 3em;
+  height: 3em;
+  color: white;
+
 }
 
 .container-fluid {

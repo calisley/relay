@@ -38,7 +38,6 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex, idsWithNa
   const [selection, setSelection] = useState();
   const [renderedNames, setRenderedNames] = useState([idsWithNames]);
 
-  console.log(idsWithNames);
 
   const [searching, setSearching] = useState(false);
 
@@ -104,7 +103,6 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex, idsWithNa
       idName.name.toLowerCase().includes(seachFilter.toLowerCase())
     );
     setRenderedNames(temp);
-    console.log(temp.length)
 
   }, [seachFilter, idsWithNames]);
 

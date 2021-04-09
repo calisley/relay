@@ -29,6 +29,11 @@ function App() {
   const [idsWithNames, setIdsWithNames] = useState([]);
 
 
+  const [image, setImage] = useState();
+  const [prevImage, setPrevImage] = useState();
+  const [prevIndex, setPrevIndex] = useState();
+
+  const [imageLoaded, setImageLoaded] = useState(false); 
 
   const [activeIndex, setActiveIndex] = useState();
   const [formData, setFormData] = useState(initialFormState);
@@ -42,11 +47,15 @@ function App() {
 
   useEffect(() => {
     if (ids[activeIndex]) {
+      fetchImage(images[activeIndex]);
       fetchComments(ids[activeIndex]);
     }
+    setImageLoaded(false);
   }, [activeIndex]);
 
   const handleSelect = (selectedIndex, e) => {
+    setPrevImage(image);
+    setPrevIndex(activeIndex);
     setActiveIndex(selectedIndex);
     if (ids[activeIndex]) {
       fetchComments(ids[selectedIndex]);
@@ -62,7 +71,6 @@ function App() {
   }
   async function fetchCandles() {
     const apiData = await API.graphql({ query: listImages, variables: {limit: 200}});
-    console.log(apiData.data.listImages);
     const imagesFromAPI = apiData.data.listImages.items;
     imagesFromAPI.sort((a, b) => {
       return a.createdAt > b.createdAt;
@@ -74,8 +82,8 @@ function App() {
     const idsWithNames = [];
     await Promise.all(
       imagesFromAPI.map(async (img) => {
-        const image = await Storage.get(img.image);
-        images.push(image);
+        // const image = await Storage.get(img.image);
+        images.push(img.image);
         ids.push(img.id);
         names.push(img.name);
         idsWithNames.push({id:img.id, name:img.name})
@@ -101,15 +109,11 @@ function App() {
     setName();
     setFormData();
   }
-  // async function fetchImage(imageId) {
-  //   const apiData = await API.graphql({
-  //     query: getImage,
-  //     variables: { id: imageId },
-  //   });
-  //   const comments = apiData.data.getImage.comments.items;
-
-  //   setCurrentGlowsticks(comments);
-  // }
+  async function fetchImage(img) {
+    setImage('');
+    const image = await Storage.get(img);
+    setImage(image);
+  }
 
   async function fetchComments(imageId) {
     const apiData = await API.graphql({
@@ -150,9 +154,9 @@ function App() {
     <div className="App">
       {ids[activeIndex] ? 
       <Container fluid>
-        <input type="file" onChange={onImageChange} />
+        {/* <input type="file" onChange={onImageChange} />
         <input type="text" value={nameForImage} onChange={(e)=>{setName(e.target.value)}}/>
-        <button onClick={createImage}>Create image</button>
+        <button onClick={createImage}>Create image</button> */}
         <Carousel
           activeIndex={activeIndex}
           onSelect={handleSelect}
@@ -165,7 +169,20 @@ function App() {
         >
           {ids.map((id, index) => (
             <Carousel.Item key={id} index={index}>
-              <img src={images[index]} />
+              {index === activeIndex || prevIndex?
+              <> 
+               <Spinner animation="border" role="status" className={imageLoaded || index === prevIndex? 'hidden':''}>
+               <span className="sr-only">Loading...</span>
+             </Spinner>
+            
+              <img src={index === activeIndex ? image : prevImage} className={imageLoaded || index == prevIndex? '':'hidden'} onLoad={()=>{
+                if(index === activeIndex){
+                setImageLoaded(true)} 
+               } }/>
+              </>
+              : ''}
+            
+              
             </Carousel.Item>
           ))}
 
