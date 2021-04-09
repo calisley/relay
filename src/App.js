@@ -26,6 +26,8 @@ function App() {
   const [ids, setIds] = useState([]);
   const [images, setImages] = useState([]);
   const [names, setNames] = useState([]);
+  const [idsWithNames, setIdsWithNames] = useState([]);
+
 
 
   const [activeIndex, setActiveIndex] = useState();
@@ -59,7 +61,8 @@ function App() {
     fetchCandles();
   }
   async function fetchCandles() {
-    const apiData = await API.graphql({ query: listImages });
+    const apiData = await API.graphql({ query: listImages, variables: {limit: 200}});
+    console.log(apiData.data.listImages);
     const imagesFromAPI = apiData.data.listImages.items;
     imagesFromAPI.sort((a, b) => {
       return a.createdAt > b.createdAt;
@@ -68,18 +71,21 @@ function App() {
     const ids = [];
     const images = [];
     const names = [];
+    const idsWithNames = [];
     await Promise.all(
       imagesFromAPI.map(async (img) => {
         const image = await Storage.get(img.image);
         images.push(image);
         ids.push(img.id);
         names.push(img.name);
+        idsWithNames.push({id:img.id, name:img.name})
       })
     );
     setIds(ids);
     setImages(images);
     setNames(names);
     setActiveIndex(0);
+    setIdsWithNames(idsWithNames);
   }
   async function createImage() {
     if (!formData.image) return;
@@ -144,9 +150,9 @@ function App() {
     <div className="App">
       {ids[activeIndex] ? 
       <Container fluid>
-        {/* <input type="file" onChange={onImageChange} />
+        <input type="file" onChange={onImageChange} />
         <input type="text" value={nameForImage} onChange={(e)=>{setName(e.target.value)}}/>
-        <button onClick={createImage}>Create image</button> */}
+        <button onClick={createImage}>Create image</button>
         <Carousel
           activeIndex={activeIndex}
           onSelect={handleSelect}
@@ -216,6 +222,7 @@ function App() {
                 glowsticks={currentGlowSticks}
                 names={names}
                 setActiveIndex={setActiveIndex}
+                idsWithNames={idsWithNames}
               />
             </>
           ) : (

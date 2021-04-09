@@ -347,6 +347,11 @@ input[type='radio']:checked + .radio__control::before {
 }
 
 
+.minimized-util.alt{
+  border: 1px solid white;
+}
+
+
 /* MOOOOOOBILE */
 
 
@@ -406,9 +411,10 @@ input[type='radio']:checked + .radio__control::before {
     height: 3em;
   }
   .nav .comment:hover{
-    background-color: lightgray;
-    translate: unset;
+    transform: unset;
   }
  
   
 }
+
+

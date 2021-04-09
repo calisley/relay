@@ -21,7 +21,7 @@ import useWindowDimensions from "./useWindowDimensions";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 
-function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
+function Utilities({ imageId, glowsticks, name, names, setActiveIndex, idsWithNames }) {
   // state management
 
   const initialFormState = { dedication: name, note: "" };
@@ -36,7 +36,9 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
   const [seachFilter, setSearchFilter] = useState("");
   const [searchUsed, setSearchUsed] = useState(false);
   const [selection, setSelection] = useState();
-  const [renderedNames, setRenderedNames] = useState([names]);
+  const [renderedNames, setRenderedNames] = useState([idsWithNames]);
+
+  console.log(idsWithNames);
 
   const [searching, setSearching] = useState(false);
 
@@ -98,11 +100,13 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
   }, [imageId]);
 
   useEffect(() => {
-    const temp = names.filter((name) =>
-      name.toLowerCase().startsWith(seachFilter.toLowerCase())
+    const temp = idsWithNames.filter((idName) =>
+      idName.name.toLowerCase().includes(seachFilter.toLowerCase())
     );
     setRenderedNames(temp);
-  }, [seachFilter]);
+    console.log(temp.length)
+
+  }, [seachFilter, idsWithNames]);
 
   async function createGlowstick() {
     if (!formData.dedication) return;
@@ -122,7 +126,7 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
     <div className="utilities">
       <div className="nav">
         {!navToggle ? (
-          <div className={width < 600 && entryToggle ? "hidden" : "minimized-util"} onClick={() => setNavToggle(true)}>
+          <div className={width < 600 && entryToggle ? "hidden" : "minimized-util alt" } onClick={() => setNavToggle(true)}>
             <VscSearch />
           </div>
         ) : (
@@ -147,7 +151,8 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
                           key={index}
                           onMouseDown={(e)=> e.preventDefault()}
                           onClick={() => {
-                            setActiveIndex(names.indexOf(name));
+                            const pos = idsWithNames.map(function (e) {return e.id;}).indexOf(name.id)
+                            setActiveIndex(pos);
                             if(width < 600){
                               setNavToggle(false);
                             }
@@ -160,7 +165,7 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
                           <div className="comment-text-wrapper-solo">
                             <Row>
                               <div className="dedication">
-                                <p>{name}</p>
+                                <p>{name.name}</p>
                               </div>
                             </Row>
                           </div>
@@ -210,7 +215,7 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
       </div>
       <div className="glowsticks">
         {!entryToggle ? (
-          <div className={width < 600 && navToggle? "hidden" : "minimized-util"} onClick={() => setEntryToggle(true)}>
+          <div className={width < 600 && navToggle? "hidden" : "minimized-util alt"} onClick={() => setEntryToggle(true)}>
             <IoMdColorWand />
           </div>
         ) : (
