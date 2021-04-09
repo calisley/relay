@@ -103,7 +103,7 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex, idsWithNa
       idName.name.toLowerCase().includes(seachFilter.toLowerCase())
     );
     setRenderedNames(temp);
-
+    console.log(renderedNames.length);
   }, [seachFilter, idsWithNames]);
 
   async function createGlowstick() {
