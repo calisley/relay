@@ -78,7 +78,7 @@
 
   display: flex;
   padding-bottom: .5em;
-  max-width: 100%;
+  width: 100%;
   text-align: left;
 }
 .comment .row{
@@ -353,6 +353,12 @@ input[type='radio']:checked + .radio__control::before {
 @media only screen and (max-width: 600px) {
   body{
     overflow: hidden;
+    width: 100vw;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    height: 100vh;
+    height: -moz-available;
+    height: -webkit-fill-available;
   }
   
   
@@ -386,6 +392,7 @@ input[type='radio']:checked + .radio__control::before {
     overflow-y: auto;
     max-height: unset;
     min-height: 0px;
+    width: 100%;
 
   }
   .comments-container{
