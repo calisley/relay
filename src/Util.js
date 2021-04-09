@@ -135,6 +135,9 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
                 >
                   <BsX />
                 </div>
+                <div className={width< 600? 'mobile-label' : 'hidden'}>
+                    Search Luminaria
+                </div>
                 {renderedNames.length > 0 && (searching || width < 600)?  (
                   <div className="comments-container">
                     <div className="comments-viewport">
@@ -167,7 +170,9 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
                     </div>
                   </div>
                 ) : (
-                  ""
+                  <>
+                  {width < 600? <div className='comments-container'></div>:''}
+                  </>
                 )}
               </>
             ) : (
@@ -221,6 +226,7 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
                 <div className={width< 600? 'mobile-label' : 'hidden'}>
                     Glowsticks
                 </div>
+               
                 {glowsticks.length > 0 ? (
                   <div className="comments-container">
                     <div className="comments-viewport">
@@ -253,7 +259,9 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
                     </div>
                   </div>
                 ) : (
-                  ""
+                  <>
+                  {width < 600? <div className='comments-container'></div>:''}
+                  </>
                 )}
               </>
             ) : (
@@ -264,10 +272,11 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
             <Container className="glowstick-input-wrapper">
               <Form.Group>
                 <Form.Row>
-                  <Col>
+                <Col xs="2">
+
                     <Form.Label>For: </Form.Label>
-                  </Col>
-                  <Col>
+                </Col>
+                <Col xs='10'>
                     <div className="input-with-effect">
                       <input
                         id="dedication"
@@ -287,10 +296,12 @@ function Utilities({ imageId, glowsticks, name, names, setActiveIndex }) {
                   </Col>
                 </Form.Row>
                 <Form.Row>
-                  <Col>
+                <Col xs='2'>
+
                     <Form.Label>Note: </Form.Label>
-                  </Col>
-                  <Col>
+                    </Col>
+                    <Col xs='10'>
+
                     <div className="input-with-effect">
                       <input
                         onChange={(e) =>

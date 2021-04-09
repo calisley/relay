@@ -193,7 +193,7 @@ input[type='radio']:checked + .radio__control::before {
 }
 .input-with-effect {
   position: relative;
-  display: inline;
+  width: 100%;
 }
 .nav .input-with-effect {
   width: 100%;
@@ -264,6 +264,11 @@ input[type='radio']:checked + .radio__control::before {
 .form-group{
   margin-bottom: 0;
   padding-left: 1em;
+  width: 100%;
+}
+
+.form-group .col{
+  max-width: 100%;
 }
 .create-glowstick-button{
   padding-left: 1em;
@@ -333,9 +338,12 @@ input[type='radio']:checked + .radio__control::before {
   position: relative;
   top: 0;
   width: 100%;
-  min-height: 1.5em;
-  font-size: 2em;
+  min-height: 2em;
+  font-size: 1.5em;
   align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -346,7 +354,7 @@ input[type='radio']:checked + .radio__control::before {
   body{
     overflow: hidden;
   }
-
+  
   
   .glowsticks-container{
     position: fixed;
@@ -389,6 +397,10 @@ input[type='radio']:checked + .radio__control::before {
   .util-hider svg{
     width: 3em;
     height: 3em;
+  }
+  .nav .comment:hover{
+    background-color: lightgray;
+    translate: unset;
   }
  
   
